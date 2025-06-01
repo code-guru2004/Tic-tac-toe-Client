@@ -7,7 +7,7 @@ const emptyBoard = Array(9).fill("");
 function App() {
   const [board, setBoard] = useState(emptyBoard);
   const [turn, setTurn] = useState("X");
-  const [startingTurn, setStartingTurn] = useState("X"); // Track who starts next
+  const [startingTurn, setStartingTurn] = useState("X");
   const [roomId, setRoomId] = useState("");
   const [joined, setJoined] = useState(false);
   const [playerSymbol, setPlayerSymbol] = useState(null);
@@ -95,6 +95,10 @@ function App() {
 
   return (
     <div className="container">
+      <svg className="background-svg" viewBox="0 0 1440 320">
+        <path fill="#c3ddff" fillOpacity="1" d="M0,96L80,101.3C160,107,320,117,480,138.7C640,160,800,192,960,202.7C1120,213,1280,203,1360,197.3L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+      </svg>
+
       {!joined ? (
         <>
           <h2>Join Tic Tac Toe</h2>
@@ -136,6 +140,13 @@ function App() {
             </button>
           )}
         </>
+      )}
+
+      {joined && (
+        <div className="room-info">
+          <div>Room ID: <strong>{roomId}</strong></div>
+          <div>You are: <strong>{playerSymbol}</strong></div>
+        </div>
       )}
     </div>
   );
