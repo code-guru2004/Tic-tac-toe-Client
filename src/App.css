@@ -1,41 +1,32 @@
+/* App.css */
+
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f6fa;
+  background: linear-gradient(135deg, #f8f9fa, #e0e0e0);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .container {
-  background-color: white;
-  padding: 30px;
-  border-radius: 20px;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 400px;
   text-align: center;
-}
-
-h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-h3 {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: #555;
+  animation: fadeIn 0.6s ease-in;
+  width: 320px;
 }
 
 input {
   padding: 10px;
   font-size: 16px;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 button {
@@ -43,10 +34,10 @@ button {
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.25s ease;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -56,31 +47,63 @@ button:hover {
 .board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: 6px;
   margin-top: 20px;
+  animation: fadeIn 0.6s ease-in;
 }
 
 .cell {
-  background-color: #e0e0e0;
-  width: 100px;
-  height: 100px;
-  font-size: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 30px 0;
+  text-align: center;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  user-select: none;
 }
 
 .cell:hover {
-  background-color: #d1d1d1;
+  background-color: #dee2e6;
+  transform: scale(1.05);
+}
+
+.cell:active {
+  transform: scale(0.97);
 }
 
 .status {
+  margin-top: 1rem;
   font-size: 20px;
-  margin: 15px 0;
   font-weight: bold;
   color: #28a745;
+  animation: pop 0.4s ease-in-out;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 
