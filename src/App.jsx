@@ -13,6 +13,7 @@ function App() {
   const [playerSymbol, setPlayerSymbol] = useState(null);
   const [winner, setWinner] = useState(null);
   const [winningLine, setWinningLine] = useState(null);
+  const [isGameReady, setIsGameReady] = useState(false); // ⬅️ New state
 
   const handleJoin = () => {
     if (!roomId) return;
@@ -21,6 +22,7 @@ function App() {
   };
 
   const handleClick = (index) => {
+    if (!isGameReady) return; // ⬅️ Block moves until both players joined
     if (winner || board[index] !== "") return;
     if (turn !== playerSymbol) return;
 
@@ -71,6 +73,7 @@ function App() {
     socket.on('updateGame', ({ board, turn }) => {
       setBoard(board);
       setTurn(turn);
+      setIsGameReady(true); // ⬅️ Game is ready only when updateGame is triggered (2 players joined)
       checkWinner(board);
     });
 
@@ -113,6 +116,7 @@ function App() {
         <>
           <h2>You are Player: {playerSymbol}</h2>
           <h3>Current Turn: {turn}</h3>
+          {!isGameReady && <p>Waiting for another player to join...</p>}
           {winner && (
             <div className="status">
               {winner === "Tie" ? "It's a Tie!" : `${winner} Wins!`}
